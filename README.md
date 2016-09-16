@@ -1,13 +1,13 @@
-# android-init
+# android-bootstrap
 
 My version of a bootstrapped android project
 
 ## Includes
 
- * Kotlin
- * Fabric
-  * Answers
-  * Crashlytics
+ * [Kotlin](https://kotlinlang.org/)
+ * [Fabric Kit](https://fabric.io/kits/)
+  * [Answers](https://answers.io/)
+  * [Crashlytics](https://try.crashlytics.com/)
 
 ## Features
 
@@ -20,4 +20,4 @@ My version of a bootstrapped android project
 
 app.properties is a hidden property file for this bootstrap project. Here are the properties that will need to be defined
 
- * 'fabric.apikey' - The fabric io API key
+ * `fabric.apikey` - The fabric io API key
