@@ -30,7 +30,3 @@ deployment:
     branch: develop
     commands:
       - ./gradlew crashlyticsUploadDistributionDebug
-  staging:
-    branch: master
-    commands:
-      - ./gradlew crashlyticsUploadDistributionRelease
