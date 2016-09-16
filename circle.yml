@@ -10,7 +10,7 @@ dependencies:
     - echo "fabric.apiKey=${app_fabric_apikey}" >> app/app.properties
 
     # Update android dependencies
-    - echo y | android update sdk --no-ui --all --filter "android-24"
+    - echo y | android update sdk --no-ui --all --filter "android-24,build-tools-24.0.0"
 
 test:
   override:
