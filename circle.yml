@@ -1,0 +1,17 @@
+machine:
+   environment:
+     ANDROID_HOME: /usr/local/android-sdk-linux
+   java:
+     version: oraclejdk8
+
+dependencies:
+  pre:
+    # Create app.properties
+    - echo "fabric.apiKey=${app_fabric_apikey}" >> app/app.properties
+
+    # Update android dependencies
+    - echo y | android update sdk --no-ui --all --filter "android-24"
+
+test:
+  override:
+    - ./gradlew build test
