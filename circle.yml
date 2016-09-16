@@ -13,6 +13,8 @@ dependencies:
     - echo y | android update sdk --no-ui --all --filter "android-24"
     - echo y | android update sdk --no-ui --all --filter "build-tools-24.0.0"
     - echo y | android update sdk --no-ui --all --filter "extra-android-support"
+  cache_directories:
+    - ~/.android
 
 test:
   override:
