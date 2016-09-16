@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'io.fabric'
+
+def appProps = new Properties()
+file("app.properties").withInputStream {
+    stream -> appProps.load(stream)
+}
 
 android {
     compileSdkVersion 24
@@ -11,7 +17,9 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = ['fabric.apikey': appProps['fabric.apikey']]
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -23,13 +31,15 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-}
-
-repositories {
-    mavenCentral()
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.3@aar') { transitive = true; }
 }
