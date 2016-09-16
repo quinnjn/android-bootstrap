@@ -45,3 +45,4 @@ captures/
 
 # Bootstrap files
 app/app.properties
+app/fabric.properties

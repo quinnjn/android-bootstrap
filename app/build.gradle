@@ -7,6 +7,25 @@ file("app.properties").withInputStream {
     stream -> appProps.load(stream)
 }
 
+task createFabricProperties << {
+  Properties fabricProps = new Properties()
+  File fabricFile = file("fabric.properties")
+  if (!fabricFile.exists()) {
+    fabricFile.write('')
+  }
+  fabricProps.load(fabricFile.newDataInputStream())
+  fabricProps.setProperty('apiKey', appProps['fabric.apiKey'])
+  fabricProps.setProperty('apiSecret', appProps['fabric.apiSecret'])
+  fabricProps.store(fabricFile.newWriter(), null)
+}
+
+project.tasks.findAll {
+  // We should find crashlytics tasks, but that doesn't seem to work
+  if (it.name.startsWith('assemble')) {
+    it.finalizedBy createFabricProperties
+  }
+}
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.0"
@@ -17,7 +36,7 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = ['fabric.apikey': appProps['fabric.apikey']]
+        manifestPlaceholders = ['fabric.apiKey': appProps['fabric.apiKey']]
     }
 
     buildTypes {

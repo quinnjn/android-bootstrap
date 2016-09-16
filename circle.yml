@@ -22,4 +22,14 @@ dependencies:
 
 test:
   override:
-    - ./gradlew build test
+    - ./gradlew build
+
+deployment:
+  development:
+    branch: develop
+    commands:
+      - ./gradlew crashlyticsUploadDistributionDebug
+  staging:
+    branch: master
+    commands:
+      - ./gradlew crashlyticsUploadDistributionRelease
